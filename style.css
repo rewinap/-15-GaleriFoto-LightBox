@@ -2,7 +2,6 @@ body{
 	background-color: #ddd;
 	font-size:18px;
 	text-transform: uppercase;
-	text-shadow: 2px 2px 2px white;
 	
 }
 
@@ -11,6 +10,8 @@ h1{
 	font-size: 80px;
 	margin: 50px 0;
 	text-align: center;
+	text-shadow: 2px 2px 2px white;
+	
 }	
 
 .container{
@@ -20,6 +21,8 @@ h1{
 	padding: 20px;
 	box-shadow: 0 0 3px 4px rgba(0,0,0, .5);
 	border-radius: 12px;
+	text-shadow: 2px 2px 2px white;
+	
 
 }
 
@@ -32,12 +35,13 @@ h1{
 	float: left;
 	margin-right: 20px;
 	position: relative;
+	overflow: hidden;
 }
 
 .clear{
 	clear: both;
 }
-.gallery li span, .gallery li img,  .gallery li{
+.gallery li span, .gallery li img, .gallery li{
 	border-radius: 50%;
 }
 
@@ -60,3 +64,112 @@ h1{
 	opacity: 1;
 	transform:scale(1) rotate(360deg);
 }
+
+.overlay{
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: rgba(0,0,0,0);
+	z-index: 9;
+	transition: .7s;
+	text-align: center;
+}
+
+.overlay:target{
+	width: auto;
+	height: auto;
+	border-radius: ;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0,0,0,.7);
+	padding: 40px;
+}
+
+.overlay img{
+	max-height:100%;
+	border-radius: 0;
+	box-shadow: 2px 2px 7px rgba(0,0,0,.9);
+}
+
+.overlay:target img{
+	animation: zoom1 .8s ;
+}
+
+@keyframes zoom1{
+	0%{
+		transform: scale(0);
+		opacity: 0;
+	}
+
+	100%{
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+.overlay .close{
+	position: absolute;
+	top: 20px;
+	left: 50%;
+	margin-left: -40px;
+	text-decoration: none;
+	color: white;
+	background-color: black;
+	border:1px solid white;
+	opacity: 0;
+}
+
+.next, .prev{
+	text-indent: -9999px;
+	position: absolute;
+	width: 57px;
+	height: 93px;
+	top:40%;
+	margin-left: 30px;
+	opacity: 0;
+}
+.next{
+	background-image:url(image/tombol/next.png); 
+}
+.prev{
+
+	background-image:url(image/tombol/prev.png); 
+	margin-left: -90px;
+}
+
+@keyframes zoom2{
+	0%{
+		opacity: 0;
+		margin-top: -20px;
+	}
+
+	100%{
+		opacity: 1;
+		margin-top: 0;
+	}
+}
+
+.overlay:target .close{
+	animation: zoom2 .5s .5s forwards;
+}
+
+@keyframes zoom3{
+	0%{
+		opacity: 0;
+	}
+
+	100%{
+		opacity: 1;
+	}
+}
+
+.overlay:target .next, .overlay:target .prev{
+	animation: zoom3 .5s .5s forwards;
+}
+
+/*.overlay:target .prev{
+	animation: zoom3 .5s .5s forwards;
+}*/
